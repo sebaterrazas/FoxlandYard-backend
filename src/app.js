@@ -3,7 +3,7 @@
 const koa = require("koa");
 const KoaLogger = require("koa-logger");
 const { koaBody } = require("koa-body");
-// const router = require("./routes");
+const router = require("./router.js");
 const cors = require('@koa/cors');
 const orm = require("./models");
 
@@ -26,7 +26,7 @@ app.use(KoaLogger()); // Este no es muy importante la verdad, es solo para mostr
 
 
 // Koa-router.
-// app.use(router.routes());
+app.use(router.routes());
 
 
 // Ahora si voy a 'localhost:3000' en el browser veré esta página.
