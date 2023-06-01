@@ -47,13 +47,13 @@ yarn start
 
 ### Crear una migración
 ```
-npx sequelize-cli model:generate --name <nombre> --attributes <atributo>:<tipo>,<atributo>:<tipo>
+yarn sequelize-cli model:generate --name <nombre> --attributes <atributo>:<tipo>,<atributo>:<tipo>
 ```
 ### Crear una seed
 ```
-npx sequelize-cli seed:generate --name <nombre>
+yarn sequelize-cli seed:generate --name <nombre>
 ```
 ### Correr todo de una
 ```
-npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && yarn dev
+yarn sequelize-cli db:migrate:undo:all && yarn sequelize-cli db:migrate && yarn sequelize-cli db:seed:all && yarn dev
 ```
