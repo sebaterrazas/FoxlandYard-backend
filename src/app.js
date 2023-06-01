@@ -1,8 +1,9 @@
 const koa = require("koa");
 const KoaLogger = require("koa-logger");
 const { koaBody } = require("koa-body");
-const router = require("./routes");
 const cors = require('@koa/cors');
+
+const router = require("./routes");
 const orm = require("./models");
 
 // Crea una instancia de Koa dentro de nuestra aplicacion.

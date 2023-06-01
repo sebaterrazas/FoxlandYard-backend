@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.belongsTo(models.Game, {foreignKey: 'gameId'});
       this.belongsTo(models.User, {foreignKey: 'userId'});
-      this.hasOne(models.Character, {foreignKey: 'id'});
+      this.hasOne(models.Character, {foreignKey: 'playerId'});
     }
   }
   Player.init({
