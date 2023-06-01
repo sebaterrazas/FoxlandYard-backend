@@ -1,16 +1,16 @@
 # grupo-Los-Atletas-de-la-Risa-backend 
 
-# Backend de Foxland Yard
+## Backend de Foxland Yard
 
-# Como levantar Backend en local
+## Como levantar Backend en local
 
-## Instalar dependencias
+### Instalar dependencias
 
 En primer lugar hay que correr las dependencias con para que se instalen librerías como sequelize, koa, dotenv, etc. Para esto se hace
 ```
 yarn install
 ```
-## Crear base de datos
+### Crear base de datos
 
 Asumiendo que tienen instalado postgresql, lo primero que hay que iniciar el servidor de postgresql. 
 ```
@@ -22,7 +22,7 @@ Como ya está instalada la dependencia de sequelize, se puede crear la base de d
 ```
 createdb nombre_bdd
 ```
-## Configurar .env
+### Configurar .env
 Para realizar el archivo .env que permitirá la conexión con la bdd, tienen que configurar las siguientes variables de entorno.
 
 ```
@@ -34,26 +34,26 @@ PORT =
 ```
 DB_USER y DB_PASSWORD son su usuario y contraseña de postgres. PORT es el puerto al que se quiere que el backend escuche (por default es 3000).
 
-## Correr migraciones
+### Correr migraciones
 Para que se creen las tablas en su base de datos hay que correr la migraciones con el siguiente comando
 ```
 yarn sequelize db:migrate
 ```
-## Levantar el servidor en local
+### Levantar el servidor en local
 Por último, hay que correr el siguiente comando para que el backend quede funcionando el http://localhost:3000/
 ```
 yarn start 
 ```
 
-## Crear una migración
+### Crear una migración
 ```
 npx sequelize-cli model:generate --name <nombre> --attributes <atributo>:<tipo>,<atributo>:<tipo>
 ```
-## Crear una seed
+### Crear una seed
 ```
 npx sequelize-cli seed:generate --name <nombre>
 ```
-## Correr todo de una
+### Correr todo de una
 ```
 npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && yarn dev
 ```
