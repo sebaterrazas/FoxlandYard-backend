@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.hasMany(models.Player, {foreignKey: 'userId'});
+      this.hasMany(models.Character, { foreignKey: 'userId' });
     }
   }
   User.init({
@@ -18,27 +18,27 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
         isAlphanumeric: {
-          msg: 'Username must be alphanumeric'
+          msg: 'Username must be alphanumeric',
         },
-      }
+      },
     },
     password: {
-      type: DataTypes. STRING,
+      type: DataTypes.STRING,
       validate: {
         isValidPassword(value) {
-          if (!value.match (/[a-z]/) || !value.match (/[0-9]/) || !value.match (/[@$!%*?&] /)) {
+          if (!value.match(/[a-z]/) || !value.match(/[0-9]/) || !value.match(/[@$!%*?&] /)) {
             throw new Error('Password must contain at least a letter, one number and one special character');
           }
-        }
-      }
-    }, 
+        },
+      },
+    },
     mail: {
       type: DataTypes.STRING,
       validate: {
         isEmail: {
-          msg: 'Email must be have a valid format'
+          msg: 'Email must be have a valid format',
         },
-      }
+      },
     },
   }, {
     sequelize,

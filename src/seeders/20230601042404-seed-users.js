@@ -1,5 +1,5 @@
 module.exports = {
-  up: (queryInterface) => queryInterface.bulkInsert('Users', [ 
+  up: (queryInterface) => queryInterface.bulkInsert('Users', [
     {
       username: 'sebaterrazas',
       password: 'cr7siu',
@@ -13,7 +13,7 @@ module.exports = {
       mail: 'ignaciolillo@uc.cl',
       createdAt: new Date(),
       updatedAt: new Date(),
-    }
+    },
   ]),
   down: (queryInterface) => queryInterface.bulkDelete('Users', null, {}),
 };

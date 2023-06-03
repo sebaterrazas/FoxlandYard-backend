@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Game extends Model {
     /**
@@ -10,14 +10,13 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.hasMany(models.Character, {foreignKey: 'gameId'});
-      this.hasMany(models.Tile, {foreignKey: 'gameId'});
-      this.hasMany(models.Player, {foreignKey: 'gameId'});
+      this.hasMany(models.Character, { foreignKey: 'gameId' });
+      this.hasMany(models.Node, { foreignKey: 'gameId' });
     }
   }
   Game.init({
     turn: DataTypes.INTEGER,
-    winner: DataTypes.STRING
+    winner: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Game',

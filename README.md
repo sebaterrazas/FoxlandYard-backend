@@ -1,6 +1,4 @@
-# grupo-Los-Atletas-de-la-Risa-backend 
-
-## Backend de Foxland Yard
+# Backend de Foxland Yard
 
 ## Como levantar Backend en local
 
@@ -57,3 +55,7 @@ yarn sequelize-cli seed:generate --name <nombre>
 ```
 yarn sequelize-cli db:migrate:undo:all && yarn sequelize-cli db:migrate && yarn sequelize-cli db:seed:all && yarn dev
 ```
+
+## Documentación Endpoints
+
+Para la documentación de los endpoints, utilizamos `Swagger`. Esta se puede ver en `/swagger`.
