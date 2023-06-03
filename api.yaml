@@ -467,6 +467,52 @@ paths:
         '400':
           description: Error al pasar al siguiente turno en el juego
 
+  /games/{gameId}/start:
+      patch:
+        tags:
+          - Games
+        operationId: games.start
+        summary: Inicia el juego
+        parameters:
+          - in: path
+            name: gameId
+            required: true
+            schema:
+              type: integer
+        responses:
+          '201':
+            description: Game already started.
+          '202':
+            description: Game starts!
+          '400':
+            description: There must be 4 characters in the game
+
+  /games/{gameId}/check-winner:
+      patch:
+        tags:
+          - Games
+        operationId: games.check.winner
+        summary: Verifica si alguien ha ganado
+        parameters:
+          - in: path
+            name: gameId
+            required: true
+            schema:
+              type: integer
+        responses:
+          '201':
+            description: Mr. Fox wins!
+          '202':
+            description: Farmers win!
+          '203':
+            description: It\'s a tie...
+          '204':
+            description: Game continues...
+          '400':
+            description: Error
+
+  /games/{gameId}/check-winner
+
   /nodes/connections:
     get:
       tags:
