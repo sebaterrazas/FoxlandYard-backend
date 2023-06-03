@@ -14,6 +14,9 @@ module.exports = {
       winner: {
         type: Sequelize.STRING,
       },
+      plays_left: {
+        type: Sequelize.INTEGER,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

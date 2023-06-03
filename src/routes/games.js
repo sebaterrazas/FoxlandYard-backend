@@ -26,12 +26,14 @@ router.get('games.show', '/:gameId', async (ctx) => {
 
 router.post('games.create', '/', async (ctx) => {
   try {
-    const game = ctx.orm.Game.create({
+    const game = await ctx.orm.Game.create({
       turn: null,
       winner: null,
+      plays_left: null,
       createdAt: new Date(),
       updatedAt: new Date(),
     });
+    console.log(game);
     ctx.body = game;
     ctx.status = 201;
   } catch (error) {
@@ -249,6 +251,79 @@ router.post('games.create.board', '/:gameId/board', async (ctx) => {
     ctx.body = error;
     ctx.status = 500;
   }
+});
+
+router.patch('games.check.winner', '/:gameId/check-winner', async (ctx) => {
+    try {
+        const game = await ctx.orm.Game.findByPk(ctx.params.gameId, {
+            include: [ctx.orm.Node, ctx.orm.Character]
+        });
+
+        const MrFox = game.Characters.findOne({
+            where: { name: 'Mr. Fox'}
+        });
+
+        if (MrFox.food === 20) {
+            await game.update({ winner: 'Mr. Fox' });
+            ctx.body = { message: 'Mr. Fox wins!' }
+            ctx.status = 201
+            return
+        }
+
+        game.Characters.forEach(async (character) => {
+            if (character.name === 'Mr. Fox') return;
+
+            if (character.nodeId === MrFox.nodeId) {
+                await game.update({ winner: 'Farmers' });
+                ctx.body = { message: 'Farmers win!' }
+                ctx.status = 202
+                return
+            }
+        })
+
+        if (game.plays_left === 0) {
+            await game.update({ winner: 'tie' });
+            ctx.body = { message: 'It\'s a tie...' }
+            ctx.status = 203
+            return
+        }
+
+        await game.update({ plays_left: plays_left - 1 });
+        ctx.body = { message: 'Game continues...' }
+        ctx.status = 203
+    } catch (error) {
+        ctx.body = error;
+        ctx.status = 400;
+    }
+});
+
+router.patch('game.start', '/:gameId/start', async (ctx) => {
+    try {
+      const game = await ctx.orm.Game.findByPk(ctx.params.gameId, {
+          include: ctx.orm.Character
+      });
+
+      // Verifies that the game hasn't started yet
+      if (game.plays_left !== null) {
+        ctx.body = { message: 'Game already started.' }
+        ctx.status = 201
+        return
+      }
+
+      // Verifies that the lenght of Characters is 4
+      if (game.Characters.length !== 4) {
+          ctx.body = { message: 'There must be 4 characters in the game' }
+          ctx.status = 400
+          return
+      }
+
+      game.update({ plays_left: 24 });
+      ctx.body = { message: 'Game starts!' }
+      ctx.status = 202
+    } catch (error) {
+      ctx.body = error
+      ctx.status = 500
+    }
 });
 
 module.exports = router;

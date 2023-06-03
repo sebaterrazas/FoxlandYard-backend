@@ -1,7 +1,7 @@
 const Koa = require('koa');
 const KoaLogger = require('koa-logger');
 const { koaBody } = require('koa-body');
-// const cors = require('@koa/cors');
+const cors = require('@koa/cors');
 const yamljs = require('yamljs');
 const { koaSwagger } = require('koa2-swagger-ui');
 
@@ -20,7 +20,7 @@ app.context.orm = orm;
 
 // NO SÉ SI EN EL PROYECTO SALTE EL PROBLEMA DEL CORS, PERO SI LO HACE DESCOMENTAR LA LÍNEA.
 // La siguiente línea arregla el problema de Cors.
-// app.use(cors(({credentials: true})));
+app.use(cors(({credentials: true})));
 
 // Middlewares proporcionados por Koa.
 app.use(koaBody());
