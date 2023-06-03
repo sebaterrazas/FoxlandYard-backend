@@ -2,26 +2,21 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Tiles', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      gameId: {
+    await queryInterface.createTable('Connections', {
+      node1Id: {
         type: Sequelize.INTEGER,
-        references: { model: 'Games', key: 'id' },
-        allowNull: false
+        primaryKey: true,
+        allowNull: false,
       },
-      hasTrap: {
-        type: Sequelize.BOOLEAN
-      },
-      foodType: {
-        type: Sequelize.STRING
+      node2Id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        allowNull: false,
       },
       movementType: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        primaryKey: true,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
@@ -34,6 +29,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Tiles');
+    await queryInterface.dropTable('Connections');
   }
 };

@@ -1,0 +1,715 @@
+openapi: 3.0.0
+info:
+  title: "Foxland Yard"
+  description: >
+    
+  version: "1.0.0"
+host: "localhost:3000"
+schemes:
+  - "http"
+paths:
+  /characters:
+    get:
+      tags:
+        - Characters
+      summary: Obtiene la lista de personajes
+      operationId: characters.list
+      responses:
+        200:
+          description: Personajes encontrados
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Character'
+        400:
+          description: Error al buscar personajes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+    post:
+      tags:
+        - Characters
+      summary: Crea un personaje
+      operationId: characters.create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                gameId:
+                  type: integer
+                userId:
+                  type: integer
+                nodeId:
+                  type: integer
+                characterName:
+                  type: string
+      responses:
+        201:
+          description: Personaje creado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Character'
+        400:
+          description: Error al crear personaje
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+  /characters/{characterId}:
+    parameters:
+      - name: characterId
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      tags:
+        - Characters
+      summary: Obtiene la información de un personaje específico por su ID
+      operationId: characters.show
+      responses:
+        200:
+          description: Personaje encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Character'
+        400:
+          description: Error al buscar personaje
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+  /characters/{characterId}/use-help:
+    patch:
+      tags:
+        - Characters
+      summary: Utiliza una ayuda en el personaje especificado por su ID
+      operationId: characters.use.use-help
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                helperName:
+                  type: string
+      responses:
+        201:
+          description: Ayuda utilizada en el personaje
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        400:
+          description: Error al utilizar ayuda en el personaje
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /characters/{characterId}/grab-food:
+    patch:
+      tags:
+        - Characters
+      summary: Roba comida con el personaje especificado por su ID
+      operationId: characters.grab.food
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                useHelp:
+                  type: boolean
+      responses:
+        201:
+          description: Comida robada con éxito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        400:
+          description: Error al robar comida
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+  /characters/{characterId}/place-trap:
+    patch:
+      tags:
+        - Characters
+      summary: Coloca una trampa en la ubicación del personaje especificado por su ID
+      operationId: characters.place.trap
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                useRat:
+                  type: boolean
+      responses:
+        201:
+          description: Trampa colocada con éxito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        400:
+          description: Error al colocar trampa
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /characters/{characterId}/details:
+    get:
+      tags:
+        - Characters
+      summary: Obtiene los detalles del personaje especificado por su ID
+      operationId: characters.details
+      responses:
+        200:
+          description: Detalles del personaje encontrados
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  # Coloca aquí los campos de Character y las relaciones que
+                  # necesites según el modelo.
+        400:
+          description: Error al buscar detalles del personaje
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+  /characters/{characterId}/move-character:
+    patch:
+      tags:
+        - Characters
+      summary: Mueve un personaje a un nodo destino utilizando un tipo de movimiento
+      operationId: games.move.character
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                movementType:
+                  type: string
+                destinationNodeId:
+                  type: integer
+                useHelp:
+                  type: boolean
+      responses:
+        201:
+          description: Personaje movido con éxito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        400:
+          description: Error al mover personaje
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  isTrap:
+                    type: boolean
+
+  /users:
+    get:
+      tags:
+        - Users
+      operationId: users.list
+      summary: Lista todos los usuarios
+      responses:
+        '201':
+          description: Usuarios encontrados
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+
+    post:
+      tags:
+        - Users
+      operationId: users.create
+      summary: Crea un nuevo usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: Usuario creado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+
+  /users/{id}:
+    get:
+      tags:
+        - Users
+      operationId: users.show
+      summary: Muestra la información de un usuario específico
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID del usuario
+      responses:
+        '201':
+          description: Usuario encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+
+  /users/{id}/characters:
+    get:
+      tags:
+        - Users
+      operationId: nodes.characters
+      summary: Obtiene los personajes asociados a un usuario
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID del usuario
+      responses:
+        '201':
+          description: Personajes del usuario obtenidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Character'
+        '400':
+          description: Bad Request
+
+  /games:
+    get:
+      tags:
+        - Games
+      operationId: games.list
+      responses:
+        '201':
+          description: Lista de juegos obtenida correctamente
+        '400':
+          description: Error al obtener la lista de juegos
+
+  /games/{gameId}:
+    get:
+      tags:
+        - Games
+      operationId: games.show
+      parameters:
+        - in: path
+          name: gameId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: Juego obtenido correctamente
+        '400':
+          description: Error al obtener el juego
+
+    post:
+      tags:
+        - Games
+      operationId: games.create
+      responses:
+        '201':
+          description: Juego creado correctamente
+        '400':
+          description: Error al crear el juego
+
+  /games/{gameId}/board:
+    get:
+      tags:
+        - Games
+      operationId: games.show.board
+      parameters:
+        - in: path
+          name: gameId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: Tablero del juego obtenido correctamente
+        '500':
+          description: Error al obtener el tablero del juego
+          
+  /games/{gameId}/characters:
+    get:
+      tags:
+        - Games
+      operationId: games.characters
+      parameters:
+        - in: path
+          name: gameId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: Personajes del juego obtenidos correctamente
+        '400':
+          description: Error al obtener los personajes de un juego
+
+  /games/{gameId}/next-turn:
+    patch:
+      tags:
+        - Games
+      operationId: games.next.turn
+      parameters:
+        - in: path
+          name: gameId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: El turno del juego pasó al siguiente personaje correctamente
+        '400':
+          description: Error al pasar al siguiente turno en el juego
+
+  /games/{gameId}/board:
+    post:
+      tags:
+        - Games
+      operationId: games.create.board
+      parameters:
+        - in: path
+          name: gameId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: Tablero del juego creado correctamente
+        '500':
+          description: Error al crear el tablero del juego
+          
+  /nodes/connections:
+    get:
+      tags:
+        - Nodes
+      summary: Obtiene las conexiones de un nodo
+      operationId: nodes.connections
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nodeId:
+                  type: integer
+                gameId:
+                  type: integer
+      responses:
+        200:
+          description: Conexiones encontradas
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  connections:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Connection'
+        404:
+          description: Nodo no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        500:
+          description: Error al buscar las conexiones del nodo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+  /nodes/characters:
+    get:
+      tags:
+        - Nodes
+      summary: Obtiene los personajes de un nodo
+      operationId: nodes.characters
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nodeId:
+                  type: integer
+                gameId:
+                  type: integer
+      responses:
+        201:
+          description: Personajes encontrados en el nodo
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Character'
+        400:
+          description: Error al buscar personajes en el nodo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+  /nodes/food:
+    patch:
+      tags:
+        - Nodes
+      summary: Actualiza la comida en un nodo
+      operationId: nodes.food
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nodeId:
+                  type: integer
+                gameId:
+                  type: integer
+                foodType:
+                  type: string
+      responses:
+        201:
+          description: Comida actualizada en el nodo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        400:
+          description: Error al actualizar la comida en el nodo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+responses:
+  500:
+    description: Internal Server Error
+    schema:
+      $ref: '#/definitions/Error'
+
+components:
+  schemas:
+    Connection:
+      type: object
+      properties:
+        node1Id:
+          type: integer
+          description: Primary key reference to Node1
+        node2Id:
+          type: integer
+          description: Primary key reference to Node2
+        movementType:
+          type: string
+      required:
+        - node1Id
+        - node2Id
+        - movementType
+    Character:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        gameId:
+          type: integer
+        userId:
+          type: integer
+        nodeId:
+          type: integer
+        food:
+          type: integer
+        walkCards:
+          type: integer
+        bikeCards:
+          type: integer
+        carCards:
+          type: integer
+        burrowCards:
+          type: integer
+        isAsh:
+          type: boolean
+        isKris:
+          type: boolean
+        isKyle:
+          type: boolean
+        isRat:
+          type: boolean
+        name:
+          type: string
+      required:
+        - gameId
+        - userId
+        - nodeId
+        - food
+        - walkCards
+        - bikeCards
+        - carCards
+        - burrowCards
+        - isAsh
+        - isKris
+        - isKyle
+        - isRat
+        - name
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          pattern: '^[a-zA-Z0-9]+$'
+          description: Alphanumeric username
+        password:
+          type: string
+          pattern: '^(?=.*[a-z])(?=.*[0-9])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'
+          description: Password must contain at least a letter, one number and one special character
+        mail:
+          type: string
+          format: email
+          description: A valid email address
+      required:
+        - username
+        - password
+        - mail
+    Game:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        turn:
+          type: integer
+        winner:
+          type: string
+      required:
+        - turn
+        - winner
+    Node:
+      type: object
+      properties:
+        nodeId:
+          type: integer
+          description: Primary key of the Node
+        gameId:
+          type: integer
+          description: Primary key reference to the Game
+        hasTrap:
+          type: boolean
+        foodType:
+          type: string
+        movementType:
+          type: string
+        location:
+          type: string
+      required:
+        - nodeId
+        - gameId
+        - hasTrap
+        - foodType
+        - movementType
+        - location
+    

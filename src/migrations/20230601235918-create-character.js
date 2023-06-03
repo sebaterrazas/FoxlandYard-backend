@@ -14,17 +14,14 @@ module.exports = {
         references: { model: 'Games', key: 'id' },
         allowNull: false
       },
-      playerId: {
+      userId: {
         type: Sequelize.INTEGER,
-        references: { model: 'Players', key: 'id' },
+        references: { model: 'Users', key: 'id' },
         allowNull: false
       },
-      tileId: {
+      nodeId: {
         type: Sequelize.INTEGER,
-        references: { model: 'Tiles', key: 'id' }
-      },
-      traps: {
-        type: Sequelize.INTEGER
+        allowNull: false
       },
       food: {
         type: Sequelize.INTEGER
@@ -38,8 +35,8 @@ module.exports = {
       carCards: {
         type: Sequelize.INTEGER
       },
-      tunnelCard: {
-        type: Sequelize.BOOLEAN
+      burrowCards: {
+        type: Sequelize.INTEGER
       },
       isAsh: {
         type: Sequelize.BOOLEAN

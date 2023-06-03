@@ -11,8 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.hasMany(models.Character, {foreignKey: 'gameId'});
-      this.hasMany(models.Tile, {foreignKey: 'gameId'});
-      this.hasMany(models.Player, {foreignKey: 'gameId'});
+      this.hasMany(models.Node, {foreignKey: 'gameId'});
     }
   }
   Game.init({
