@@ -59,3 +59,7 @@ yarn sequelize-cli db:migrate:undo:all && yarn sequelize-cli db:migrate && yarn 
 ## Documentación Endpoints
 
 Para la documentación de los endpoints, utilizamos `Swagger`. Esta se puede ver en `/swagger`.
+
+## Tablero de Juego
+
+El tablero de juego (los nodos y sus conexiones) se ve en `board.png`.
