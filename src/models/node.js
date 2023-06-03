@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Node extends Model {
     /**
@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.belongsTo(models.Game, {foreignKey: 'gameId'});
-      this.hasMany(models.Character, {foreignKey: 'nodeId', otherKey: 'gameId'});
+      this.belongsTo(models.Game, { foreignKey: 'gameId' });
+      this.hasMany(models.Character, { foreignKey: 'nodeId', otherKey: 'gameId' });
       this.hasMany(models.Connection, { as: 'ConnectionsAsNode1', foreignKey: 'node1Id' });
       this.hasMany(models.Connection, { as: 'ConnectionsAsNode2', foreignKey: 'node2Id' });
     }
@@ -24,12 +24,12 @@ module.exports = (sequelize, DataTypes) => {
     gameId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      references: { model: "Games", key: "id" },
+      references: { model: 'Games', key: 'id' },
     },
     hasTrap: DataTypes.BOOLEAN,
     foodType: DataTypes.STRING,
     movementType: DataTypes.STRING,
-    location: DataTypes.STRING
+    location: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Node',

@@ -360,6 +360,7 @@ paths:
       tags:
         - Games
       operationId: games.list
+      summary: Obtiene la lista de juegos
       responses:
         '201':
           description: Lista de juegos obtenida correctamente
@@ -371,6 +372,7 @@ paths:
       tags:
         - Games
       operationId: games.show
+      summary: Obtiene los detalles de un juego específico
       parameters:
         - in: path
           name: gameId
@@ -381,12 +383,13 @@ paths:
         '201':
           description: Juego obtenido correctamente
         '400':
-          description: Error al obtener el juego
-
+          description: Error al obtener el juego                
+    
     post:
       tags:
         - Games
       operationId: games.create
+      summary: Crea un nuevo juego
       responses:
         '201':
           description: Juego creado correctamente
@@ -398,6 +401,7 @@ paths:
       tags:
         - Games
       operationId: games.show.board
+      summary: Obtiene el tablero asociado a un juego específico
       parameters:
         - in: path
           name: gameId
@@ -409,12 +413,30 @@ paths:
           description: Tablero del juego obtenido correctamente
         '500':
           description: Error al obtener el tablero del juego
-          
+
+    post:
+      tags:
+        - Games
+      operationId: games.create.board
+      summary: Crea un tablero para un juego específico
+      parameters:
+        - in: path
+          name: gameId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: Tablero del juego creado correctamente
+        '500':
+          description: Error al crear el tablero del juego
+
   /games/{gameId}/characters:
     get:
       tags:
         - Games
       operationId: games.characters
+      summary: Obtiene los personajes asociados a un juego específico
       parameters:
         - in: path
           name: gameId
@@ -432,6 +454,7 @@ paths:
       tags:
         - Games
       operationId: games.next.turn
+      summary: Avanza al siguiente turno en un juego específico
       parameters:
         - in: path
           name: gameId
@@ -444,23 +467,6 @@ paths:
         '400':
           description: Error al pasar al siguiente turno en el juego
 
-  /games/{gameId}/board:
-    post:
-      tags:
-        - Games
-      operationId: games.create.board
-      parameters:
-        - in: path
-          name: gameId
-          required: true
-          schema:
-            type: integer
-      responses:
-        '201':
-          description: Tablero del juego creado correctamente
-        '500':
-          description: Error al crear el tablero del juego
-          
   /nodes/connections:
     get:
       tags:

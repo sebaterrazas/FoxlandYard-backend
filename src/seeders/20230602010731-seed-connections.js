@@ -1,342 +1,342 @@
 module.exports = {
-  up: (queryInterface) => queryInterface.bulkInsert('Connections', [ 
+  up: (queryInterface) => queryInterface.bulkInsert('Connections', [
     {
       node1Id: 16,
       node2Id: 1,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 16,
       node2Id: 2,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 16,
       node2Id: 3,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 16,
       node2Id: 18,
       movementType: 'bike',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 1,
       node2Id: 17,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 2,
       node2Id: 3,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 3,
       node2Id: 23,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 1,
       node2Id: 5,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 17,
       node2Id: 5,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 2,
       node2Id: 18,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 2,
       node2Id: 4,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 23,
       node2Id: 4,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 23,
       node2Id: 7,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 7,
       node2Id: 19,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 4,
       node2Id: 19,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 17,
       node2Id: 18,
       movementType: 'bike',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 23,
       node2Id: 24,
       movementType: 'car',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 4,
       node2Id: 18,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 24,
       node2Id: 18,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 24,
       node2Id: 18,
       movementType: 'bike',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 6,
       node2Id: 18,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 5,
       node2Id: 6,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 5,
       node2Id: 25,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 5,
       node2Id: 20,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 20,
       node2Id: 9,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 18,
       node2Id: 20,
       movementType: 'bike',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 6,
       node2Id: 8,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 9,
       node2Id: 13,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 13,
       node2Id: 25,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 25,
       node2Id: 24,
       movementType: 'car',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 8,
       node2Id: 9,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 8,
       node2Id: 24,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 8,
       node2Id: 21,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 20,
       node2Id: 21,
       movementType: 'bike',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 21,
       node2Id: 13,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 19,
       node2Id: 24,
       movementType: 'bike',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 19,
       node2Id: 10,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 10,
       node2Id: 24,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 10,
       node2Id: 21,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 24,
       node2Id: 27,
       movementType: 'car',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 19,
       node2Id: 27,
       movementType: 'bike',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 10,
       node2Id: 11,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 25,
       node2Id: 22,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 25,
       node2Id: 22,
       movementType: 'bike',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 25,
       node2Id: 26,
       movementType: 'car',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 22,
       node2Id: 14,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 14,
       node2Id: 26,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 13,
       node2Id: 22,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 21,
       node2Id: 12,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 21,
       node2Id: 22,
       movementType: 'bike',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 21,
       node2Id: 26,
       movementType: 'bike',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 12,
       node2Id: 26,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 12,
       node2Id: 11,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 11,
       node2Id: 15,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 15,
       node2Id: 26,
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 27,
       node2Id: 26,
       movementType: 'car',
       createdAt: new Date(),
       updatedAt: new Date(),
-    },{
+    }, {
       node1Id: 27,
       node2Id: 21,
       movementType: 'bike',

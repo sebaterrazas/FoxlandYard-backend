@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Connection extends Model {
     /**
@@ -18,14 +18,14 @@ module.exports = (sequelize, DataTypes) => {
     node1Id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      references: { model: "Nodes", key: "nodeId" },
+      references: { model: 'Nodes', key: 'nodeId' },
     },
     node2Id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      references: { model: "Nodes", key: "nodeId" },
+      references: { model: 'Nodes', key: 'nodeId' },
     },
-    movementType: DataTypes.STRING
+    movementType: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Connection',

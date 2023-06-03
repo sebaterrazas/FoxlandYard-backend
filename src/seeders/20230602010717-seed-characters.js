@@ -1,5 +1,5 @@
 module.exports = {
-  up: (queryInterface) => queryInterface.bulkInsert('Characters', [ 
+  up: (queryInterface) => queryInterface.bulkInsert('Characters', [
     {
       gameId: 1,
       userId: 2,

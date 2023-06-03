@@ -3,7 +3,7 @@ const board1 = [];
 // Create all nodes
 
 // Nodes 1 to 15
-for (let i = 1; i <= 15; i++) {
+for (let i = 1; i <= 15; i += 1) {
   board1.push(
     {
       nodeId: i,
@@ -14,7 +14,7 @@ for (let i = 1; i <= 15; i++) {
       movementType: 'walk',
       createdAt: new Date(),
       updatedAt: new Date(),
-    }
+    },
   );
 }
 
@@ -29,7 +29,7 @@ board1.push(
     movementType: 'bike',
     createdAt: new Date(),
     updatedAt: new Date(),
-  }
+  },
 );
 
 // Node 17
@@ -43,7 +43,7 @@ board1.push(
     movementType: 'bike',
     createdAt: new Date(),
     updatedAt: new Date(),
-    }
+  },
 );
 
 // Node 18
@@ -57,7 +57,7 @@ board1.push(
     movementType: 'bike',
     createdAt: new Date(),
     updatedAt: new Date(),
-  }
+  },
 );
 
 // Node 19
@@ -71,11 +71,11 @@ board1.push(
     movementType: 'bike',
     createdAt: new Date(),
     updatedAt: new Date(),
-  }
+  },
 );
 
 // Nodes 20, 21 and 22
-for (let i = 20; i <= 22; i++) {
+for (let i = 20; i <= 22; i += 1) {
   board1.push(
     {
       nodeId: i,
@@ -86,7 +86,7 @@ for (let i = 20; i <= 22; i++) {
       movementType: 'bike',
       createdAt: new Date(),
       updatedAt: new Date(),
-    }
+    },
   );
 }
 
@@ -101,21 +101,21 @@ board1.push(
     movementType: 'car',
     createdAt: new Date(),
     updatedAt: new Date(),
-  }
+  },
 );
 
 // Node 24
 board1.push(
   {
     nodeId: 24,
-    location: "Supermarket",
+    location: 'Supermarket',
     gameId: 1,
     hasTrap: false,
     foodType: null,
     movementType: 'car',
     createdAt: new Date(),
     updatedAt: new Date(),
-  }
+  },
 );
 
 // Node 25
@@ -129,7 +129,7 @@ board1.push(
     movementType: 'car',
     createdAt: new Date(),
     updatedAt: new Date(),
-  }
+  },
 );
 
 // Node 26
@@ -143,7 +143,7 @@ board1.push(
     movementType: 'car',
     createdAt: new Date(),
     updatedAt: new Date(),
-  }
+  },
 );
 
 // Node 27
@@ -157,7 +157,7 @@ board1.push(
     movementType: 'car',
     createdAt: new Date(),
     updatedAt: new Date(),
-  }
+  },
 );
 
 module.exports = {
