@@ -366,6 +366,16 @@ paths:
           description: Lista de juegos obtenida correctamente
         '400':
           description: Error al obtener la lista de juegos
+    post:
+      tags:
+        - Games
+      operationId: games.create
+      summary: Crea un nuevo juego
+      responses:
+        '201':
+          description: Juego creado correctamente
+        '400':
+          description: Error al crear el juego
 
   /games/{gameId}:
     get:
@@ -384,17 +394,6 @@ paths:
           description: Juego obtenido correctamente
         '400':
           description: Error al obtener el juego                
-    
-    post:
-      tags:
-        - Games
-      operationId: games.create
-      summary: Crea un nuevo juego
-      responses:
-        '201':
-          description: Juego creado correctamente
-        '400':
-          description: Error al crear el juego
 
   /games/{gameId}/board:
     get:
