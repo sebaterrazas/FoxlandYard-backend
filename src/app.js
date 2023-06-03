@@ -36,8 +36,4 @@ app.use(
 );
 app.use(router.routes());
 
-// Ahora si voy a 'localhost:3000' en el browser veré esta página.
-// Eso sí, para que aparezca la página primero debo "encender" la página con
-// 'node src/index.js' en Ubuntu.
-
 module.exports = app;
