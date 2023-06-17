@@ -290,7 +290,7 @@ router.patch('games.check.winner', '/:gameId/check-winner', async (ctx) => {
 
         await game.update({ plays_left: plays_left - 1 });
         ctx.body = { message: 'Game continues...' }
-        ctx.status = 203
+        ctx.status = 204
     } catch (error) {
         ctx.body = error;
         ctx.status = 400;
