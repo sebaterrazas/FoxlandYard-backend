@@ -521,8 +521,6 @@ paths:
           '400':
             description: Error
 
-  /games/{gameId}/check-winner
-
   /nodes/connections:
     get:
       tags:

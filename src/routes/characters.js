@@ -25,7 +25,7 @@ router.get('characters.show', '/:characterId', async (ctx) => {
   }
 });
 
-router.patch('characters.use.use-help', '/:characterId/use-help', async (ctx) => {
+router.patch('characters.use-help', '/:characterId/use-help', async (ctx) => {
   try {
     const helpers = ['Ash', 'Kris', 'Kyle', 'Rat'];
     const { helperName } = ctx.request.body;
@@ -52,7 +52,7 @@ router.patch('characters.use.use-help', '/:characterId/use-help', async (ctx) =>
   }
 });
 
-router.patch('characters.grab.food', '/:characterId/grab-food', async (ctx) => {
+router.patch('characters.grab-food', '/:characterId/grab-food', async (ctx) => {
   try {
     const { useHelp } = ctx.request.body;
 
@@ -69,7 +69,7 @@ router.patch('characters.grab.food', '/:characterId/grab-food', async (ctx) => {
   }
 });
 
-router.patch('characters.place.trap', '/:characterId/place-trap', async (ctx) => {
+router.patch('characters.place-trap', '/:characterId/place-trap', async (ctx) => {
   try {
     const { useRat } = ctx.request.body;
     const character = await ctx.orm.Character.findByPk(ctx.params.characterId, {
@@ -119,7 +119,7 @@ router.get('characters.details', '/:characterId/details', async (ctx) => {
   }
 });
 
-router.patch('games.move.character', '/:characterId/move-character', async (ctx) => {
+router.patch('games.move-character', '/:characterId/move-character', async (ctx) => {
   try {
     const { movementType, destinationNodeId, useHelp } = ctx.request.body;
 
@@ -130,15 +130,15 @@ router.patch('games.move.character', '/:characterId/move-character', async (ctx)
     const helpAvailable = useHelp ? character.isAsh || character.isKris || character.isKyle : false;
 
     if (character.Node.hasTrap && character.name === 'Mr. Fox' && !helpAvailable) {
-      ctx.status = 400;
-      ctx.body = { message: `Mr. Fox can't move because he's a trap at node ${character.Node.nodeId}.` };
+      ctx.status = 401;
+      ctx.body = { message: `Mr. Fox can't move because he's trap at node ${character.Node.nodeId}.` };
       return;
     }
 
     const originNodeId = character.Node.nodeId;
 
     if (originNodeId === destinationNodeId) {
-      ctx.status = 400;
+      ctx.status = 402;
       ctx.body = { message: `${character.name} is already at node ${originNodeId}.` };
       return;
     }
@@ -166,7 +166,7 @@ router.patch('games.move.character', '/:characterId/move-character', async (ctx)
     }
 
     if (!connections) {
-      ctx.status = 404;
+      ctx.status = 403;
       ctx.body = { message: `You can't get from node ${originNodeId} to node ${destinationNodeId} using ${movementType}.` };
       return;
     }
@@ -187,9 +187,13 @@ router.patch('games.move.character', '/:characterId/move-character', async (ctx)
     updateData[cardType] = cardsLeft - 1;
 
     await character.update(updateData);
+    if (character.name === 'Mr. Fox') {
+      await ctx.orm.MrFoxMovement.create({ gameId: character.gameId, movementType});
+    }
     ctx.body = { message: `${character.name} moved from node ${originNodeId} to node ${destinationNodeId} using ${movementType}.` };
     ctx.status = 201;
   } catch (error) {
+    console.log('error-->', error);
     ctx.body = error;
     ctx.status = 400;
   }

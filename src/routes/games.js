@@ -15,8 +15,11 @@ router.get('games.list', '/', async (ctx) => {
 
 router.get('games.show', '/:gameId', async (ctx) => {
   try {
-    const game = await ctx.orm.Game.findByPk(ctx.params.gameId);
-    ctx.body = game;
+    const game = await ctx.orm.Game.findByPk(ctx.params.gameId, {
+      include: ctx.orm.Node
+    });
+    const connections = await ctx.orm.Connection.findAll();
+    ctx.body = { game, connections };
     ctx.status = 201;
   } catch (error) {
     ctx.body = error;
@@ -33,7 +36,6 @@ router.post('games.create', '/', async (ctx) => {
       createdAt: new Date(),
       updatedAt: new Date(),
     });
-    console.log(game);
     ctx.body = game;
     ctx.status = 201;
   } catch (error) {
@@ -66,6 +68,21 @@ router.get('games.characters', '/:gameId/characters', async (ctx) => {
   } catch (error) {
     ctx.body = error;
     ctx.status = 400;
+  }
+});
+
+router.get('games.mr.fox.movements', '/:gameId/mr-fox-movements', async (ctx) => {
+  try {
+    const game = await ctx.orm.Game.findByPk(ctx.params.gameId, {
+      include: ctx.orm.MrFoxMovement,
+    });
+
+    ctx.body = game.MrFoxMovements;
+    ctx.status = 201;
+  } catch (error) {
+    console.log(error);
+    ctx.body = error;
+    ctx.status = 500;
   }
 });
 
