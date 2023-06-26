@@ -4,7 +4,7 @@ const db = require('./models');
 
 dotenv.config();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000; // HAY QUE CAMBIARLO a 1234????
 
 db.sequelize
   .authenticate()

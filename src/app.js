@@ -16,10 +16,9 @@ const app = new Koa();
 
 app.context.orm = orm;
 
-// Conexión a la base de datos.
+// --- Conexión a la base de datos ---
 
-// NO SÉ SI EN EL PROYECTO SALTE EL PROBLEMA DEL CORS, PERO SI LO HACE DESCOMENTAR LA LÍNEA.
-// La siguiente línea arregla el problema de Cors.
+// Cors para poder acceder desde el fronted.
 app.use(cors(({credentials: true})));
 
 // Middlewares proporcionados por Koa.
