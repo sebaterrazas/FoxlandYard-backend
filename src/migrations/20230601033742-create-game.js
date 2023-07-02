@@ -8,8 +8,8 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      turn: {
-        type: Sequelize.INTEGER,
+      current_turn: {
+        type: Sequelize.STRING,
       },
       winner: {
         type: Sequelize.STRING,

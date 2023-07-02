@@ -3,6 +3,7 @@ const { Op } = require('sequelize');
 
 const router = new Router();
 
+// Inútil (?)
 router.get('nodes.connections', '/connections', async (ctx) => {
   try {
     const { nodeId, gameId } = ctx.request.body;
