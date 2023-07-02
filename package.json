@@ -16,8 +16,8 @@
     "koa2-swagger-ui": "^5.8.0",
     "nodemon": "^2.0.22",
     "pg": "^8.11.0",
-    "sequelize": "^6.31.1",
-    "sequelize-cli": "^6.6.0",
+    "sequelize": "^6.32.1",
+    "sequelize-cli": "^6.6.1",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {

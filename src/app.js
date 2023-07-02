@@ -16,10 +16,9 @@ const app = new Koa();
 
 app.context.orm = orm;
 
-// Conexión a la base de datos.
+// --- Conexión a la base de datos ---
 
-// NO SÉ SI EN EL PROYECTO SALTE EL PROBLEMA DEL CORS, PERO SI LO HACE DESCOMENTAR LA LÍNEA.
-// La siguiente línea arregla el problema de Cors.
+// Cors para poder acceder desde el fronted.
 app.use(cors(({credentials: true})));
 
 // Middlewares proporcionados por Koa.
@@ -35,9 +34,5 @@ app.use(
   }),
 );
 app.use(router.routes());
-
-// Ahora si voy a 'localhost:3000' en el browser veré esta página.
-// Eso sí, para que aparezca la página primero debo "encender" la página con
-// 'node src/index.js' en Ubuntu.
 
 module.exports = app;
