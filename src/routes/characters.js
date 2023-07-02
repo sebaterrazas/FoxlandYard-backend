@@ -225,11 +225,11 @@ router.post('characters.create', '/', async (ctx) => {
       name: characterName,
     };
 
-    const character = await ctx.orm.User.create(characterParams);
+    const character = await ctx.orm.Character.create(characterParams);
     ctx.body = { character };
     ctx.status = 201;
   } catch (error) {
-    ctx.body = error;
+    ctx.body = { error: error.message };
     ctx.status = 400;
   }
 });
