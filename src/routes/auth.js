@@ -7,12 +7,6 @@ dotenv.config();
 
 const router = new Router();
 
-// {
-//     "email": "micorreo@correo.com",
-//     "username": "pepito123",
-//     "password": "pepito321"
-// }
-
 router.post("authentication.signup", "/signup", async (ctx) => {
     const authInfo = ctx.request.body;
     let user = await ctx.orm.User.findOne({ where: { mail: authInfo.email } })

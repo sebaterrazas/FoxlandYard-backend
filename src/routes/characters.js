@@ -3,6 +3,8 @@ const { Op } = require('sequelize');
 
 const router = new Router();
 
+const { createCharacter } = require('../functions/characters');
+
 router.get('characters.list', '/', async (ctx) => {
   try {
     const characters = await ctx.orm.Character.findAll();
@@ -201,33 +203,7 @@ router.patch('games.move-character', '/:characterId/move-character', async (ctx)
 
 router.post('characters.create', '/', async (ctx) => {
   try {
-    const {
-      gameId,
-      userId,
-      nodeId,
-      characterName,
-    } = ctx.request.body;
-
-    const characterParams = {
-      gameId,
-      userId,
-      nodeId,
-      traps: 0,
-      food: characterName === 'Mr. Fox' ? 0 : 20,
-      walkCards: 11,
-      bikeCards: 8,
-      carCards: 4,
-      burrowCards: characterName === 'Mr. Fox' ? 1 : 0,
-      isAsh: characterName === 'Mr. Fox',
-      isKris: characterName === 'Mr. Fox',
-      isKyle: characterName === 'Mr. Fox',
-      isRat: characterName !== 'Mr. Fox',
-      name: characterName,
-    };
-
-    const character = await ctx.orm.Character.create(characterParams);
-    ctx.body = { character };
-    ctx.status = 201;
+    await createCharacter(ctx);
   } catch (error) {
     ctx.body = { error: error.message };
     ctx.status = 400;
