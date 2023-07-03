@@ -26,8 +26,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
         isValidPassword(value) {
-          if (!value.match(/[a-z]/) || !value.match(/[0-9]/) || !value.match(/[@$!%*?&]/)) {
-            throw new Error('Password must contain at least a letter, one number and one special character');
+          if (!value.match(/[a-z]/) || !value.match(/[0-9]/)) {
+            throw new Error('Password must contain at least a letter, and one number.');
           }
         },
       },

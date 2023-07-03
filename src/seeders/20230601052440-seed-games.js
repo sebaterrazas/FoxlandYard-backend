@@ -15,7 +15,7 @@ module.exports = {
       updatedAt: new Date(),
     },
     {
-      turn: 1,
+      current_turn: 'Mr. Bean',
       winner: null,
       plays_left: 30,
       createdAt: new Date(),
