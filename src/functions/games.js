@@ -1,19 +1,14 @@
 
 async function createGame(ctx) {
-  try {
-    const game = await ctx.orm.Game.create({
-      winner: null,
-      plays_left: null,
-      current_turn: null,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
-    ctx.body = { game };
-    ctx.status = 201;
-  } catch (error) {
-    ctx.body = error;
-    ctx.status = 400;
-  }
+  const game = await ctx.orm.Game.create({
+    winner: null,
+    plays_left: null,
+    current_turn: null,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  });
+  ctx.body = { game };
+  ctx.status = 201;
 }
 
 async function checkWinner(ctx) {
