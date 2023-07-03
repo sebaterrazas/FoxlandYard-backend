@@ -24,7 +24,18 @@ router.get('games.list', '/', async (ctx) => {
 router.get('games.show', '/:gameId', async (ctx) => {
   try {
     const game = await ctx.orm.Game.findByPk(ctx.params.gameId, {
-      include: [ctx.orm.Node, ctx.orm.Character, ctx.orm.MrFoxMovement]
+      include: [
+        ctx.orm.Node, 
+        {
+          model: ctx.orm.Character,
+          include: [ // A continuación, incluimos el modelo User en Character
+            {
+              model: ctx.orm.User,
+              attributes: ['username'], // Esto seleccionará solo la columna 'username'
+            }
+          ]
+        },
+        ctx.orm.MrFoxMovement]
     });
     const connections = await ctx.orm.Connection.findAll();
     ctx.body = { game, connections };

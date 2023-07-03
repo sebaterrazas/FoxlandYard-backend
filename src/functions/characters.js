@@ -4,14 +4,15 @@ async function createCharacter(ctx) {
     const {
         gameId,
         userId,
-        nodeId,
         characterName,
     } = ctx.request.body;
+
+    const characterPosition = { 'Mr. Fox': 16, 'Mr. Bean': 27, 'Mr. Boggis': 25, 'Mr. Bunce': 26 }[characterName];
   
     const characterParams = {
         gameId,
         userId,
-        nodeId,
+        nodeId: characterPosition,
         traps: 0,
         food: characterName === 'Mr. Fox' ? 0 : 20,
         walkCards: 11,

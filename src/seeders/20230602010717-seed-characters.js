@@ -19,7 +19,7 @@ module.exports = {
     },
     {
       gameId: 1,
-      userId: 1,
+      userId: 3,
       nodeId: 2,
       food: 20,
       walkCards: 2,
@@ -53,7 +53,7 @@ module.exports = {
     },
     {
       gameId: 1,
-      userId: 1,
+      userId: 4,
       nodeId: 13,
       food: 13,
       walkCards: 2,
@@ -70,7 +70,7 @@ module.exports = {
     },
     {
       gameId: 2,
-      userId: 2,
+      userId: 1,
       nodeId: 1,
       food: 0,
       walkCards: 0,
