@@ -49,6 +49,7 @@ router.get('games.show', '/:gameId', async (ctx) => {
 router.post('games.create', '/', async (ctx) => {
   try {
     await createGame(ctx);
+    const finalBody = {...ctx.body};
     if (ctx.status !== 201) return;
     ctx.request.body = {
       ...ctx.request.body,
@@ -57,6 +58,7 @@ router.post('games.create', '/', async (ctx) => {
     await createCharacter(ctx);
     if (ctx.status !== 201) return;
     await createBoard(ctx);
+    ctx.body = finalBody;
   } catch (error) {
     ctx.body = error;
     ctx.status = 400;
