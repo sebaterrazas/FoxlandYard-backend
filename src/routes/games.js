@@ -91,4 +91,19 @@ router.patch('games.perform.turn', '/:gameId/perform-turn', async (ctx) => {
   }
 });
 
+router.patch('games.start.game', '/:gameId/start-game', async (ctx) => {
+  try {
+    const game = await ctx.orm.Game.findByPk(ctx.params.gameId, {
+      include: ctx.orm.Character,
+    });
+    await game.update({ current_turn: 'Mr. Fox', plays_left: 24 });
+    ctx.body = { message: `Game started!` };
+    ctx.status = 201;
+  } catch (error) {
+    console.log('errrrorrr', error);
+    ctx.body = error;
+    ctx.status = 400;
+  }
+});
+
 module.exports = router;
