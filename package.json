@@ -34,9 +34,9 @@
     "lint": "eslint . --ext .js",
     "deploy": "node start.js",
     "db:migrate": "sequelize db:migrate",
-    "db:seed": "sequelize db:seed: all",
+    "db:seed": "sequelize db:seed:all",
     "db:drop": "sequelize db:drop",
     "db:create": "sequelize db:create",
-    "db:reset": "run-s db: drop db:create"
+    "db:reset": "run-s db:drop db:create"
   }
 }
