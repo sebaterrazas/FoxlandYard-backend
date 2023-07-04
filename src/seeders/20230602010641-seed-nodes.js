@@ -1,6 +1,6 @@
 const nodes = [];
 
-for (let gameId = 1; gameId <= 3; gameId += 1) {
+for (let gameId = 1; gameId <= 2; gameId += 1) {
   // Create all nodes
   // Nodes 1 to 15
   for (let i = 1; i <= 15; i += 1) {
