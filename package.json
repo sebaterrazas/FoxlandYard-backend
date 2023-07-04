@@ -31,6 +31,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "lint": "eslint . --ext .js"
+    "lint": "eslint . --ext .js",
+    "deploy": "node start.js"
   }
 }
