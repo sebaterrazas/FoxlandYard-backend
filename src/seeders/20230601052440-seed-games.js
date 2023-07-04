@@ -14,13 +14,6 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     },
-    {
-      current_turn: 'Mr. Bean',
-      winner: null,
-      plays_left: 30,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
   ]),
   down: (queryInterface) => queryInterface.bulkDelete('Games', null, {}),
 };

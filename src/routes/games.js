@@ -8,11 +8,23 @@ const { createBoard } = require('../functions/nodes');
 
 
 
-router.get('games.list', '/', async (ctx) => {
+router.post('games.list', '/filter', async (ctx) => {
   try {
-    const games = await ctx.orm.Game.findAll({
-      include: ctx.orm.Character,
-    });
+    console.log('ctx.params', ctx.params);
+    const { filterByAvailable } = ctx.request.body;
+    let games = [];
+    if (filterByAvailable) {
+      games = await ctx.orm.Game.findAll({
+        include: ctx.orm.Character,
+        where: {
+          plays_left: null,
+        },
+      });
+    } else {
+      games = await ctx.orm.Game.findAll({
+        include: ctx.orm.Character,
+      });
+    }
     ctx.body = games;
     ctx.status = 201;
   } catch (error) {
