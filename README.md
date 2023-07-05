@@ -63,3 +63,10 @@ Para la documentación de los endpoints, utilizamos `Swagger`. Esta se puede ver
 ## Tablero de Juego
 
 El tablero de juego (los nodos y sus conexiones) se ve en `board.png`.
+
+
+## Deploy del Frontend
+https://main--cozy-donut-43e14f.netlify.app/
+
+## Deploy del Backend
+https://foxlandyard-api.onrender.com
