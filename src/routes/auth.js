@@ -54,8 +54,6 @@ router.post("authentication.login", "/login", async (ctx) => {
         ctx.status = 400;
         return;
     }
-    console.log(user.password)
-    console.log(authInfo.password)
 
     const validPassword = await bcrypt.compare(authInfo.password, user.password);
     if (!validPassword) {
