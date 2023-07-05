@@ -28,14 +28,26 @@ router.post("authentication.signup", "/signup", async (ctx) => {
         ctx.status = 400;
         return;
     }
+
+    const expirationSeconds = 1 * 60 * 60 * 24 * 30;
+    const JWT_PRIVATE_KEY = process.env.JWT_SECRET;
+    var token = jwt.sign(
+        { scope: ['user'] },
+        JWT_PRIVATE_KEY,
+        { subject: user.id.toString() },
+        { expiresIn: expirationSeconds }
+    );
     ctx.body = {
         user: {
             id: user.id,
             username: user.username,
             mail: user.mail
-        }
-    };
-    ctx.status = 201;
+        },
+        "access_token": token,
+        "token_type": "Bearer",
+        "expires_in": expirationSeconds,
+    }
+    ctx.status = 200;
 })
 
 router.post("authentication.login", "/login", async (ctx) => {
@@ -64,7 +76,7 @@ router.post("authentication.login", "/login", async (ctx) => {
     // Creamos el JWT. Si quisieras agregar distintos scopes, como por ejemplo
     // "admin", podrían hacer un llamado a la base de datos y cambiar el payload
     // en base a eso.
-    const expirationSeconds = 1 * 60 * 60 * 24;
+    const expirationSeconds = 1 * 60 * 60 * 24 * 30;
     const JWT_PRIVATE_KEY = process.env.JWT_SECRET;
     var token = jwt.sign(
         { scope: ['user'] },
@@ -72,7 +84,6 @@ router.post("authentication.login", "/login", async (ctx) => {
         { subject: user.id.toString() },
         { expiresIn: expirationSeconds }
     );
-    ctx.status = 200;
     ctx.body = {
         user: {
             id: user.id,
