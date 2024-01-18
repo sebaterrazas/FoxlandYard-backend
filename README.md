@@ -69,4 +69,4 @@ El tablero de juego (los nodos y sus conexiones) se ve en `board.png`.
 https://main--cozy-donut-43e14f.netlify.app/
 
 ## Deploy del Backend
-https://foxlandyard-api.onrender.com
+https://foxlandyard-api.onrender.com (not working due to expired free tier)
